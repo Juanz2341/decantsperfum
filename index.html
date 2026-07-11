@@ -50,7 +50,22 @@ section{ padding:80px 10%; }
 }
 .card:hover { transform: translateY(-5px); border-color: #d4af37; }
 
-.perfume-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.6)); }
+/* Contenedor blanco para que las fotos reales se vean como de catálogo */
+.img-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.perfume-img { 
+    width: 100%; 
+    height: 190px; 
+    object-fit: contain; 
+    transition: transform .3s ease;
+}
+.card:hover .perfume-img { transform: scale(1.05); }
 
 .brand { font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 3px; font-weight: 600; margin-bottom: 5px; }
 .card h3{ margin-bottom: 10px; font-size: 22px; }
@@ -134,15 +149,17 @@ footer a:hover { color: #d4af37; }
 
         <!-- Le Male Elixir -->
         <div class="card">
-            <img class="perfume-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&q=80" alt="Le Male Elixir">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/71Xm6u04f1L._SL1500_.jpg" alt="Le Male Elixir">
+            </div>
             <div class="brand">J.P. Gaultier</div>
             <h3>Le Male Elixir</h3>
             <p>Una ola de calor adictiva. Notas profundas de miel, tabaco rubio y lavanda nocturna.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
-                    <strong>$11.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Elixir', '5ml', 11000)">Agregar</button>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Elixir', '5ml', 12000)">Agregar</button>
                 </div>
                 <div class="opcion">
                     <span>Decant 10ml</span>
@@ -154,89 +171,100 @@ footer a:hover { color: #d4af37; }
 
         <!-- Y Le Parfum -->
         <div class="card">
-            <img class="perfume-img" src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&q=80" alt="Y Le Parfum">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/51r29d6jLmL._SL1000_.jpg" alt="Y Le Parfum">
+            </div>
             <div class="brand">Yves Saint Laurent</div>
             <h3>Y Le Parfum</h3>
             <p>Elegancia oscura y limpia. Un contraste absoluto entre lavanda vibrante y madera de cedro negro.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
-                    <strong>$12.500</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '5ml', 12500)">Agregar</button>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '5ml', 12000)">Agregar</button>
                 </div>
                 <div class="opcion">
                     <span>Decant 10ml</span>
-                    <strong>$23.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '10ml', 23000)">Agregar</button>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '10ml', 20000)">Agregar</button>
                 </div>
             </div>
         </div>
 
         <!-- Le Male Le Parfum -->
         <div class="card">
-            <img class="perfume-img" src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80" alt="Le Male Le Parfum">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/61y8B342-9L._SL1500_.jpg" alt="Le Male Le Parfum">
+            </div>
             <div class="brand">J.P. Gaultier</div>
             <h3>Le Male Le Parfum</h3>
             <p>El capitán de la noche. Un aura seductora de cardamomo, iris elegante y vainilla oriental.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
-                    <strong>$11.500</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '5ml', 11500)">Agregar</button>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '5ml', 12000)">Agregar</button>
                 </div>
                 <div class="opcion">
                     <span>Decant 10ml</span>
-                    <strong>$21.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '10ml', 21000)">Agregar</button>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '10ml', 20000)">Agregar</button>
                 </div>
             </div>
         </div>
 
         <!-- Erba Pura -->
         <div class="card">
-            <img class="perfume-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80" alt="Erba Pura">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/511T4jIItmL._SL1000_.jpg" alt="Erba Pura">
+            </div>
             <div class="brand">Xerjoff</div>
             <h3>Erba Pura</h3>
             <p>Una explosión frutal bestial. Cítricos sicilianos, almizcle blanco y pura opulencia nicho.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
-                    <strong>$18.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '5ml', 18000)">Agregar</button>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '5ml', 12000)">Agregar</button>
                 </div>
                 <div class="opcion">
                     <span>Decant 10ml</span>
-                    <strong>$34.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '10ml', 34000)">Agregar</button>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '10ml', 20000)">Agregar</button>
                 </div>
             </div>
         </div>
 
-        <!-- Asad Bourbon -->
+        <!-- Asad Lattafa -->
         <div class="card">
-            <img class="perfume-img" src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" alt="Asad Bourbon">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/51M3mZJp-kL._SL1000_.jpg" alt="Asad Lattafa">
+            </div>
             <div class="brand">Lattafa</div>
-            <h3>Asad Bourbon</h3>
+            <h3>Asad</h3>
             <p>Carácter y misterio. Un perfil especiado, denso y avainillado con toques de maderas oscuras.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
-                    <strong>$6.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Asad Bourbon', '5ml', 6000)">Agregar</button>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Lattafa Asad', '5ml', 12000)">Agregar</button>
                 </div>
                 <div class="opcion">
                     <span>Decant 10ml</span>
-                    <strong>$11.000</strong>
-                    <button class="btn-add" onclick="agregarAlCarrito('Asad Bourbon', '10ml', 11000)">Agregar</button>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" onclick="agregarAlCarrito('Lattafa Asad', '10ml', 20000)">Agregar</button>
                 </div>
             </div>
         </div>
 
         <!-- Valentino Born In Roma (Inspiración) -->
         <div class="card" style="border-color: #555;">
+            <div class="img-container">
+                <img class="perfume-img" src="https://m.media-amazon.com/images/I/61qT0g5HqdL._SL1000_.jpg" alt="Valentino Born in Roma Intense">
+            </div>
             <div class="brand" style="color:#aaa;">Extracto de Perfumería</div>
             <h3 style="color: #fff;">Born in Roma Intense</h3>
-            <p style="font-size:13px; color:#ccc;"><strong>Inspiración Premium.</strong> Fórmula exclusiva elaborada con aceites esenciales de máxima concentración y alcohol de perfumería fina. Garantiza una proyección épica y una similitud olfativa extraordinaria al Valentino original.</p>
+            <p style="font-size:13px; color:#ccc;"><strong>Inspiración Premium.</strong> Fórmula exclusiva elaborada con aceites esenciales de máxima concentración y alcohol de perfumería fina. Garantiza una proyección épica y una similitud olfativa extraordinaria al original.</p>
             <div class="opciones-compra">
                 <div class="opcion">
                     <span>Decant 5ml</span>
@@ -292,7 +320,6 @@ footer a:hover { color: #d4af37; }
     function agregarAlCarrito(nombre, tamaño, precio) {
         carrito.push({ nombre, tamaño, precio });
         actualizarCarrito();
-        // Animación visual rápida para saber que se agregó
         const btnCart = document.querySelector('.cart-float');
         btnCart.style.transform = 'scale(1.2)';
         setTimeout(() => btnCart.style.transform = 'scale(1)', 200);
@@ -352,10 +379,8 @@ footer a:hover { color: #d4af37; }
 
         textoPedido += `\nTotal estimado: $${total.toLocaleString('es-AR')}\n\nMi usuario es: `;
 
-        // Copiar al portapapeles
         navigator.clipboard.writeText(textoPedido).then(() => {
             alert("¡Tu pedido fue copiado!\n\nSe va a abrir Instagram. Solo tenés que poner 'Pegar' en el chat y enviarnos el mensaje.");
-            // Redirigir a Instagram
             window.open("https://ig.me/m/dicants.elite.ar", "_blank");
         }).catch(err => {
             alert("Hubo un error al copiar. Por favor, escribinos directo a @dicants.elite.ar");
@@ -363,7 +388,6 @@ footer a:hover { color: #d4af37; }
         });
     }
 
-    // Inicializar carrito vacío
     actualizarCarrito();
 </script>
 
