@@ -1,1 +1,75 @@
+let carrito = [];
 
+function toggleCart() {
+  document.getElementById('cart-modal').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+function agregarAlCarrito(nombre, tamaño, precio) {
+  carrito.push({ nombre, tamaño, precio });
+  actualizarCarrito();
+  const btnCart = document.querySelector('.cart-float');
+  btnCart.style.transform = 'scale(1.12)';
+  setTimeout(() => btnCart.style.transform = 'scale(1)', 180);
+}
+
+function eliminarDelCarrito(index) {
+  carrito.splice(index, 1);
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  const contenedor = document.getElementById('cart-items');
+  const contador = document.getElementById('cart-count');
+  const totalElement = document.getElementById('cart-total-price');
+
+  contenedor.innerHTML = '';
+  let total = 0;
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = '<p class="empty">Tu carrito está vacío.</p>';
+  } else {
+    carrito.forEach((item, index) => {
+      total += item.precio;
+      contenedor.innerHTML += `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <h4>${item.nombre}</h4>
+            <p>Decant ${item.tamaño} · $${item.precio.toLocaleString('es-AR')}</p>
+          </div>
+          <button class="cart-item-remove" onclick="eliminarDelCarrito(${index})" aria-label="Eliminar item">X</button>
+        </div>
+      `;
+    });
+  }
+
+  contador.innerText = carrito.length;
+  totalElement.innerText = '$' + total.toLocaleString('es-AR');
+}
+
+function enviarPedido() {
+  if (carrito.length === 0) {
+    alert('Tu carrito está vacío. Agregá algún decant primero.');
+    return;
+  }
+
+  let textoPedido = 'Hola! Quiero hacer el siguiente pedido de decants:\n\n';
+  let total = 0;
+
+  carrito.forEach(item => {
+    textoPedido += `- ${item.nombre} (${item.tamaño})\n`;
+    total += item.precio;
+  });
+
+  textoPedido += `\nTotal estimado: $${total.toLocaleString('es-AR')}\n\nMi usuario es: `;
+
+  navigator.clipboard.writeText(textoPedido).then(() => {
+    alert('¡Tu pedido fue copiado! Se abrirá Instagram para enviarlo.');
+    window.open('https://ig.me/m/dicants.elite.ar', '_blank', 'noopener,noreferrer');
+  }).catch(() => {
+    alert('No se pudo copiar automáticamente. Te abrimos Instagram igual.');
+    window.open('https://instagram.com/dicants.elite.ar', '_blank', 'noopener,noreferrer');
+  });
+}
+
+actualizarCarrito();
