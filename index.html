@@ -1,1054 +1,771 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dicants Elite AR - Decants premium y fragancias exclusivas en Concordia, Entre Ríos." />
-  <title>Dicants Elite AR</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    :root{
-      --bg:#080808;
-      --bg2:#111;
-      --card:#141414;
-      --card2:#1a1a1a;
-      --text:#f4f4f4;
-      --muted:#a0a0a0;
-      --gold:#d4af37;
-      --gold2:#f2d27a;
-      --line:#242424;
-      --danger:#ff4d4d;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family:'Poppins',sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(212,175,55,.10), transparent 28%),
-        linear-gradient(180deg, #050505 0%, #090909 40%, #050505 100%);
-      color:var(--text);
-      overflow-x:hidden;
-    }
-
-    a{ color:inherit; text-decoration:none; }
-    button{ font-family:inherit; }
-
-    .topbar{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1500;
-      backdrop-filter: blur(14px);
-      background: rgba(8,8,8,.72);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .topbar-inner{
-      max-width:1200px;
-      margin:0 auto;
-      padding:14px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brandmark{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:.8px;
-    }
-
-    .brandmark .logo{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, var(--gold), #7a5a12);
-      color:#000;
-      box-shadow: 0 10px 30px rgba(212,175,55,.25);
-      flex:none;
-    }
-
-    .brandmark span{
-      font-size:14px;
-      text-transform:uppercase;
-    }
-
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .nav-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      color:var(--text);
-      font-size:13px;
-      transition:.25s ease;
-    }
-
-    .nav-btn:hover{
-      transform:translateY(-1px);
-      border-color: rgba(212,175,55,.45);
-      background: rgba(212,175,55,.08);
-    }
-
-    .hero{
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:120px 20px 70px;
-      position:relative;
-      background:
-        linear-gradient(rgba(0,0,0,.72), rgba(20,10,0,.72)),
-        url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1600&q=80");
-      background-size:cover;
-      background-position:center;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,.25) 100%);
-      pointer-events:none;
-    }
-
-    .hero-content{
-      position:relative;
-      z-index:1;
-      max-width:900px;
-      width:100%;
-      text-align:center;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      background: rgba(0,0,0,.32);
-      border:1px solid rgba(212,175,55,.35);
-      color:var(--gold2);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      margin-bottom:18px;
-    }
-
-    h1{
-      font-size:clamp(42px, 7vw, 78px);
-      line-height:1;
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-weight:800;
-      text-shadow: 0 10px 40px rgba(0,0,0,.45);
-    }
-
-    .hero p{
-      margin:18px auto 0;
-      max-width:760px;
-      font-size:clamp(16px, 2vw, 20px);
-      line-height:1.7;
-      color:#e7e7e7;
-      font-weight:300;
-    }
-
-    .hero-cta{
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:30px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      border:none;
-      cursor:pointer;
-      padding:15px 24px;
-      border-radius:999px;
-      font-weight:700;
-      letter-spacing:.4px;
-      transition:.25s ease;
-      font-size:14px;
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg, var(--gold), #f0d27a);
-      color:#111;
-      box-shadow: 0 14px 35px rgba(212,175,55,.22);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.1);
-    }
-
-    .btn:hover{ transform:translateY(-2px); }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-      margin-top:34px;
-    }
-
-    .stat{
-      background:rgba(0,0,0,.34);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:20px;
-      padding:18px 14px;
-      text-align:center;
-    }
-
-    .stat strong{
-      display:block;
-      color:var(--gold2);
-      font-size:22px;
-      margin-bottom:6px;
-    }
-
-    .stat span{
-      color:#d8d8d8;
-      font-size:13px;
-    }
-
-    section{
-      padding:90px 20px;
-    }
-
-    .container{
-      max-width:1200px;
-      margin:0 auto;
-    }
-
-    .section-head{
-      text-align:center;
-      margin-bottom:42px;
-    }
-
-    .titulo{
-      color:var(--gold);
-      font-size:clamp(30px, 4vw, 46px);
-      text-transform:uppercase;
-      letter-spacing:2px;
-      margin-bottom:10px;
-    }
-
-    .subtitulo-seccion{
-      color:var(--muted);
-      font-size:15px;
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.6;
-    }
-
-    .features{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:16px;
-      margin-bottom:30px;
-    }
-
-    .feature{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:20px;
-      padding:18px;
-      display:flex;
-      align-items:flex-start;
-      gap:14px;
-    }
-
-    .feature i{
-      color:var(--gold);
-      font-size:22px;
-      margin-top:2px;
-    }
-
-    .feature h4{
-      font-size:15px;
-      margin-bottom:4px;
-    }
-
-    .feature p{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));
-      gap:26px;
-    }
-
-    .card{
-      background: linear-gradient(180deg, rgba(22,22,22,.95), rgba(14,14,14,.95));
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:26px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      transition:.3s ease;
-      position:relative;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      border-color: rgba(212,175,55,.35);
-    }
-
-    .badge{
-      position:absolute;
-      top:16px;
-      left:16px;
-      z-index:2;
-      background: rgba(212,175,55,.92);
-      color:#111;
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .img-container{
-      background: linear-gradient(180deg, #fff, #f5f5f5);
-      padding:18px;
-      min-height:250px;
-      display:grid;
-      place-items:center;
-    }
-
-    .perfume-img{
-      width:100%;
-      height:210px;
-      object-fit:contain;
-      display:block;
-      filter: drop-shadow(0 14px 24px rgba(0,0,0,.18));
-    }
-
-    .card-body{
-      padding:22px;
-    }
-
-    .brand{
-      font-size:11px;
-      text-transform:uppercase;
-      color:var(--gold);
-      letter-spacing:3px;
-      font-weight:700;
-      margin-bottom:8px;
-    }
-
-    .card h3{
-      font-size:24px;
-      margin-bottom:10px;
-      line-height:1.2;
-    }
-
-    .card p{
-      font-size:14px;
-      color:#b3b3b3;
-      line-height:1.7;
-      min-height:72px;
-      margin-bottom:18px;
-    }
-
-    .opciones-compra{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:12px;
-    }
-
-    .opcion{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      padding:14px 12px;
-    }
-
-    .opcion span{
-      display:block;
-      color:#a9a9a9;
-      font-size:12px;
-      margin-bottom:6px;
-    }
-
-    .opcion strong{
-      display:block;
-      font-size:18px;
-      color:#fff;
-      margin-bottom:10px;
-    }
-
-    .btn-add{
-      width:100%;
-      border:none;
-      cursor:pointer;
-      padding:10px 12px;
-      border-radius:12px;
-      background:linear-gradient(135deg, var(--gold), #f0d27a);
-      color:#111;
-      font-weight:800;
-      font-size:12px;
-      transition:.25s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-
-    .btn-add:hover{
-      transform:translateY(-1px);
-      filter:brightness(1.03);
-    }
-
-    .note{
-      margin-top:22px;
-      color:#8f8f8f;
-      font-size:13px;
-      text-align:center;
-      line-height:1.6;
-    }
-
-    .footer-cta{
-      background: linear-gradient(180deg, #090909, #050505);
-      border-top:1px solid rgba(255,255,255,.06);
-      padding:70px 20px;
-      text-align:center;
-    }
-
-    .footer-cta h2{
-      color:var(--gold);
-      margin-bottom:10px;
-      text-transform:uppercase;
-      letter-spacing:2px;
-    }
-
-    .footer-cta p{
-      color:#a9a9a9;
-      max-width:720px;
-      margin:0 auto 24px;
-      line-height:1.7;
-    }
-
-    .social-row{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:12px;
-    }
-
-    .social-link{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:13px 18px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      color:#fff;
-      transition:.25s ease;
-    }
-
-    .social-link:hover{
-      transform:translateY(-2px);
-      border-color: rgba(212,175,55,.35);
-      background: rgba(212,175,55,.08);
-    }
-
-    .cart-float{
-      position:fixed;
-      bottom:26px;
-      right:26px;
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      border:none;
-      background:linear-gradient(135deg, var(--gold), #f0d27a);
-      color:#111;
-      display:grid;
-      place-items:center;
-      font-size:22px;
-      cursor:pointer;
-      box-shadow:0 18px 40px rgba(212,175,55,.25);
-      z-index:1800;
-      transition:.25s ease;
-    }
-
-    .cart-float:hover{ transform:scale(1.06); }
-
-    .cart-count{
-      position:absolute;
-      top:-4px;
-      right:-4px;
-      width:24px;
-      height:24px;
-      border-radius:50%;
-      background:#e11;
-      color:#fff;
-      font-size:12px;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      border:2px solid #111;
-    }
-
-    .cart-modal{
-      position:fixed;
-      top:0;
-      right:-420px;
-      width:380px;
-      max-width:100vw;
-      height:100vh;
-      background:#0f0f0f;
-      border-left:1px solid rgba(255,255,255,.08);
-      box-shadow:-18px 0 50px rgba(0,0,0,.45);
-      z-index:2000;
-      display:flex;
-      flex-direction:column;
-      transition:right .35s ease;
-    }
-
-    .cart-modal.open{ right:0; }
-
-    .cart-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:22px 20px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .cart-header h2{
-      color:var(--gold);
-      font-size:22px;
-    }
-
-    .close-cart{
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:30px;
-      cursor:pointer;
-      line-height:1;
-    }
-
-    .cart-items{
-      flex:1;
-      overflow-y:auto;
-      padding:18px 20px;
-    }
-
-    .cart-item{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:flex-start;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:14px;
-      margin-bottom:12px;
-    }
-
-    .cart-item-info h4{
-      font-size:14px;
-      margin-bottom:4px;
-    }
-
-    .cart-item-info p{
-      font-size:12px;
-      color:#a9a9a9;
-    }
-
-    .cart-item-remove{
-      background:none;
-      border:none;
-      color:#ff5a5a;
-      cursor:pointer;
-      font-weight:800;
-      padding:4px 6px;
-      flex:none;
-    }
-
-    .cart-footer{
-      padding:18px 20px 22px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .cart-total{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:18px;
-      font-weight:800;
-      margin-bottom:16px;
-    }
-
-    .cart-total span:last-child{
-      color:var(--gold2);
-    }
-
-    .btn-checkout{
-      width:100%;
-      padding:15px 18px;
-      border:none;
-      border-radius:999px;
-      background:linear-gradient(135deg, var(--gold), #f0d27a);
-      color:#111;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      transition:.25s ease;
-    }
-
-    .btn-checkout:hover{ transform:translateY(-1px); }
-
-    .empty{
-      color:#8f8f8f;
-      text-align:center;
-      margin-top:30px;
-      font-size:14px;
-    }
-
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.45);
-      z-index:1750;
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    .overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    @media (max-width: 900px){
-      .features,
-      .stats{
-        grid-template-columns:1fr;
-      }
-
-      .cart-modal{
-        width:100%;
-        right:-100%;
-      }
-    }
-
-    @media (max-width: 640px){
-      .topbar-inner{
-        padding:12px 14px;
-      }
-
-      .brandmark span{
-        font-size:12px;
-      }
-
-      .nav-btn{
-        padding:9px 11px;
-        font-size:12px;
-      }
-
-      section{
-        padding:72px 14px;
-      }
-
-      .opciones-compra{
-        grid-template-columns:1fr;
-      }
-
-      .cart-float{
-        bottom:18px;
-        right:18px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Decants originales de fragancias de nicho y diseñador — Jean Paul Gaultier, YSL, Xerjoff y más. Probá antes de invertir en el frasco completo. Pedidos por Instagram.">
+<meta property="og:title" content="Dicants Elite AR — Perfumería de Nicho en Formato Decant">
+<meta property="og:description" content="Fragancias originales fraccionadas en 5ml y 10ml. Envíos a todo el país.">
+<meta property="og:type" content="website">
+<title>Dicants Elite AR | Decants de Perfumes de Nicho y Diseñador</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080808'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%23d4af37' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --black:#080808;
+    --black-soft:#111111;
+    --card:#141414;
+    --gold:#d4af37;
+    --gold-light:#e6c565;
+    --gold-dim:rgba(212,175,55,.18);
+    --text:#e8e6e0;
+    --text-muted:#8c8c8c;
+    --line:#242424;
+    --font-body:'Poppins',sans-serif;
+    --font-display:'Cormorant Garamond',serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:var(--font-body); }
+
+html{ scroll-behavior:smooth; }
+
+body{ background:var(--black); color:var(--text); overflow-x:hidden; }
+
+a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold); outline-offset:3px;
+}
+
+section{ scroll-margin-top:84px; }
+
+/* ============ NAVBAR ============ */
+.navbar{
+    position:fixed; top:0; left:0; width:100%; z-index:900;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 6%; background:transparent;
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+}
+.navbar.scrolled{
+    background:rgba(8,8,8,.92); backdrop-filter:blur(12px);
+    box-shadow:0 2px 24px rgba(0,0,0,.6); padding:14px 6%;
+}
+.nav-logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--font-display); font-weight:700; font-size:22px;
+    letter-spacing:2px; color:var(--gold); text-transform:uppercase;
+}
+.nav-logo svg{ width:26px; height:26px; color:var(--gold); flex-shrink:0; }
+.nav-links{
+    display:flex; gap:36px; list-style:none;
+}
+.nav-links a{
+    color:var(--text); text-decoration:none; font-size:14px; letter-spacing:.5px;
+    font-weight:400; position:relative; padding-bottom:4px; transition:color .25s;
+}
+.nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--gold);
+    transition:width .25s;
+}
+.nav-links a:hover{ color:var(--gold-light); }
+.nav-links a:hover::after{ width:100%; }
+.nav-toggle{
+    display:none; background:none; border:none; color:var(--gold); cursor:pointer; padding:6px;
+}
+.nav-toggle svg{ width:26px; height:26px; }
+
+@media(max-width:800px){
+    .nav-links{
+        position:fixed; top:0; right:-100%; width:70%; max-width:320px; height:100vh;
+        background:rgba(8,8,8,.98); backdrop-filter:blur(14px);
+        flex-direction:column; justify-content:center; align-items:flex-start;
+        padding:40px; gap:28px; transition:right .4s ease; border-left:1px solid var(--line);
+    }
+    .nav-links.open{ right:0; }
+    .nav-toggle{ display:block; z-index:950; }
+}
+
+/* ============ HERO ============ */
+header{
+    height:100vh; min-height:560px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:20px;
+    background:linear-gradient(rgba(0,0,0,.78),rgba(50,30,0,.72)),
+    url("https://images.unsplash.com/photo-1595535373192-fc8938bab596?auto=format&fit=crop&w=1400&q=80");
+    background-size:cover; background-position:center; position:relative;
+}
+.eyebrow{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    color:var(--gold-light); letter-spacing:3px; font-size:18px; margin-bottom:18px;
+    text-transform:uppercase;
+}
+h1{
+    font-family:var(--font-display); font-size:70px; color:var(--gold);
+    letter-spacing:5px; font-weight:700; text-transform:uppercase; line-height:1.05;
+}
+header p{ font-size:18px; margin-top:18px; max-width:640px; color:#e0e0e0; font-weight:300; line-height:1.6; }
+
+.btn{
+    margin-top:38px; text-decoration:none; color:black; background:var(--gold);
+    padding:16px 42px; border-radius:40px; font-weight:600; letter-spacing:1px;
+    text-transform:uppercase; font-size:14px; transition:.3s ease-in-out; cursor:pointer;
+    border:none; display:inline-block;
+}
+.btn:hover{ transform:scale(1.05); background:#fff; box-shadow:0 4px 24px rgba(255,255,255,.35); }
+
+.scroll-cue{
+    position:absolute; bottom:34px; color:var(--gold); opacity:.75;
+    animation:bob 2.2s ease-in-out infinite;
+}
+.scroll-cue svg{ width:22px; height:22px; }
+@keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+/* ============ DIVIDER (signature motif) ============ */
+.divider{ display:flex; align-items:center; justify-content:center; gap:14px; margin:0 auto 50px; width:fit-content; }
+.divider .line{ width:60px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+.divider .line.right{ background:linear-gradient(90deg,var(--gold),transparent); }
+.divider svg{ width:14px; height:14px; color:var(--gold); }
+
+/* ============ TRUST STRIP ============ */
+.trust-strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:0; background:var(--black-soft);
+}
+.trust-item{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    padding:34px 20px; gap:10px; border-right:1px solid var(--line);
+}
+.trust-item:last-child{ border-right:none; }
+.trust-item svg{ width:28px; height:28px; color:var(--gold); }
+.trust-item h4{ font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--text); font-weight:600; }
+.trust-item p{ font-size:12px; color:var(--text-muted); font-weight:300; max-width:200px; }
+
+@media(max-width:800px){
+    .trust-strip{ grid-template-columns:repeat(2,1fr); }
+    .trust-item{ border-bottom:1px solid var(--line); }
+}
+
+/* ============ SECTIONS GENERAL ============ */
+section{ padding:90px 10%; }
+.titulo{
+    text-align:center; color:var(--gold); font-family:var(--font-display);
+    font-size:46px; font-weight:700; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px;
+}
+.subtitulo-seccion{ text-align:center; color:var(--text-muted); margin-bottom:20px; font-size:16px; font-weight:300; }
+
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .scroll-cue{ animation:none; }
+}
+
+/* ============ FILTROS ============ */
+.filtros{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:50px;
+}
+.filtro-btn{
+    background:transparent; border:1px solid var(--line); color:var(--text-muted);
+    padding:9px 20px; border-radius:30px; font-size:13px; cursor:pointer; transition:.25s;
+    letter-spacing:.4px;
+}
+.filtro-btn:hover{ border-color:var(--gold); color:var(--gold-light); }
+.filtro-btn.active{ background:var(--gold); color:#000; border-color:var(--gold); font-weight:600; }
+
+/* ============ CARDS ============ */
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; }
+
+.card{
+    background:rgba(25,25,25,.8); backdrop-filter:blur(10px);
+    padding:30px 20px; border-radius:24px; text-align:center;
+    border:1px solid #222; transition:.4s;
+}
+.card:hover{ transform:translateY(-6px); border-color:var(--gold); box-shadow:0 20px 40px rgba(0,0,0,.4); }
+
+.img-container{
+    background:radial-gradient(circle at 50% 42%, var(--gold-dim), rgba(255,255,255,.02) 65%, transparent 80%);
+    border-radius:16px; padding:18px; margin-bottom:20px; border:1px solid var(--line);
+}
+.perfume-icon{ width:100%; height:190px; display:block; transition:transform .35s ease; }
+.card:hover .perfume-icon{ transform:scale(1.05); }
+
+.brand{ font-size:11px; text-transform:uppercase; color:var(--gold); letter-spacing:3px; font-weight:600; margin-bottom:6px; }
+.card h3{ margin-bottom:10px; font-size:23px; font-family:var(--font-display); font-weight:700; }
+.card p{ font-size:14px; color:#999; min-height:60px; margin-bottom:20px; font-weight:300; line-height:1.55; }
+
+.opciones-compra{ display:flex; justify-content:space-between; gap:10px; border-top:1px solid #333; padding-top:15px; }
+.opcion{ background:#1a1a1a; padding:10px; border-radius:12px; flex:1; border:1px solid #333; transition:.3s; }
+.opcion span{ display:block; font-size:12px; color:#aaa; margin-bottom:5px; }
+.opcion strong{ display:block; color:#fff; font-size:16px; margin-bottom:10px; }
+
+.btn-add{
+    background:var(--gold); color:#000; border:none; padding:9px; width:100%;
+    border-radius:8px; font-weight:bold; font-size:12px; cursor:pointer; transition:.3s;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.btn-add svg{ width:14px; height:14px; }
+.btn-add:hover{ background:#fff; }
+.btn-add.added{ background:#3ba55c; color:#fff; }
+
+/* ============ QUÉ ES UN DECANT ============ */
+.decant-info{ background:var(--black-soft); }
+.decant-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1100px; margin:0 auto;
+}
+.decant-visual{
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle,var(--gold-dim),transparent 70%);
+    border-radius:24px; padding:40px;
+}
+.decant-visual svg{ width:100%; max-width:260px; color:var(--gold); }
+.decant-text h3{
+    font-family:var(--font-display); font-size:32px; color:var(--gold); margin-bottom:16px; font-weight:700;
+}
+.decant-text p{ font-size:15px; line-height:1.8; color:#ccc; font-weight:300; margin-bottom:14px; }
+
+@media(max-width:800px){
+    .decant-grid{ grid-template-columns:1fr; }
+    .decant-visual{ order:-1; }
+}
+
+/* ============ CÓMO COMPRAR ============ */
+.steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:1100px; margin:0 auto;
+}
+.step-item{ text-align:center; padding:0 10px; }
+.step-num{
+    width:52px; height:52px; border-radius:50%; border:1px solid var(--gold); color:var(--gold);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 20px;
+    font-family:var(--font-display); font-size:22px; font-weight:700;
+}
+.step-item h4{ font-size:17px; margin-bottom:10px; letter-spacing:.5px; }
+.step-item p{ font-size:14px; color:var(--text-muted); font-weight:300; line-height:1.6; }
+
+@media(max-width:800px){ .steps{ grid-template-columns:1fr; gap:34px; } }
+
+/* ============ FOOTER ============ */
+footer{ padding:70px 20px 40px; text-align:center; background:#050505; border-top:1px solid #111; }
+footer h2{ font-family:var(--font-display); color:var(--gold); font-size:26px; margin-bottom:16px; font-weight:700; }
+footer p.foot-sub{ margin:0 0 22px; font-weight:300; color:#777; }
+.ig-link{
+    display:inline-flex; align-items:center; gap:10px; color:#fff; text-decoration:none;
+    font-weight:600; font-size:19px; border:1px solid var(--line); padding:12px 28px; border-radius:40px;
+    transition:.3s;
+}
+.ig-link svg{ width:20px; height:20px; color:var(--gold); }
+.ig-link:hover{ border-color:var(--gold); color:var(--gold-light); }
+.foot-note{ margin-top:34px; font-size:12px; color:#444; font-weight:300; }
+
+/* ============ CARRITO FLOTANTE ============ */
+.cart-float{
+    position:fixed; bottom:30px; right:30px; background:var(--gold); color:black;
+    width:64px; height:64px; border-radius:50%; display:flex; justify-content:center; align-items:center;
+    cursor:pointer; box-shadow:0 5px 20px rgba(212,175,55,.4); z-index:1000; transition:.3s; border:none;
+}
+.cart-float:hover{ transform:scale(1.1); }
+.cart-float svg{ width:26px; height:26px; }
+.cart-count{
+    position:absolute; top:-2px; right:-2px; background:#c0392b; color:white;
+    font-size:12px; width:22px; height:22px; border-radius:50%;
+    display:flex; justify-content:center; align-items:center; font-weight:bold; font-family:var(--font-body);
+}
+
+/* ============ MODAL CARRITO ============ */
+.cart-modal{
+    position:fixed; top:0; right:-400px; width:350px; max-width:90vw; height:100vh;
+    background:#111; z-index:2000; padding:30px 20px; box-shadow:-5px 0 20px rgba(0,0,0,.8);
+    transition:right .4s ease; display:flex; flex-direction:column; border-left:1px solid #333;
+}
+.cart-modal.open{ right:0; }
+.cart-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding-bottom:15px; margin-bottom:20px; }
+.cart-header h2{ color:var(--gold); font-size:22px; font-family:var(--font-display); }
+.close-cart{ background:none; border:none; color:#fff; cursor:pointer; padding:4px; }
+.close-cart svg{ width:22px; height:22px; }
+.cart-items{ flex:1; overflow-y:auto; }
+.cart-empty{ display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:60px; color:#888; }
+.cart-empty svg{ width:36px; height:36px; opacity:.5; }
+
+.cart-item{ display:flex; justify-content:space-between; align-items:flex-start; background:#1a1a1a; padding:14px; border-radius:10px; margin-bottom:10px; gap:10px; }
+.cart-item-info h4{ font-size:14px; color:#fff; margin-bottom:2px; }
+.cart-item-info p{ font-size:12px; color:#aaa; margin:0 0 8px; }
+.qty-stepper{ display:flex; align-items:center; gap:10px; }
+.qty-stepper button{
+    width:22px; height:22px; border-radius:50%; border:1px solid #444; background:transparent; color:#fff;
+    cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center;
+}
+.qty-stepper button:hover{ border-color:var(--gold); color:var(--gold); }
+.qty-stepper span{ font-size:13px; min-width:14px; text-align:center; }
+.cart-item-right{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+.cart-item-subtotal{ font-size:13px; color:var(--gold-light); font-weight:600; white-space:nowrap; }
+.cart-item-remove{ color:#c0392b; background:none; border:none; cursor:pointer; padding:2px; }
+.cart-item-remove svg{ width:16px; height:16px; }
+
+.cart-footer{ border-top:1px solid #333; padding-top:20px; margin-top:20px; }
+.cart-total{ display:flex; justify-content:space-between; font-size:18px; font-weight:bold; margin-bottom:20px; }
+.btn-checkout{
+    background:var(--gold); color:#000; border:none; width:100%; padding:15px; border-radius:30px;
+    font-weight:bold; font-size:15px; cursor:pointer; text-transform:uppercase; transition:.3s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.btn-checkout svg{ width:18px; height:18px; }
+.btn-checkout:hover{ background:#fff; }
+
+@media(max-width:700px){
+    h1{ font-size:44px; }
+    .titulo{ font-size:34px; }
+    .cart-modal{ width:100%; right:-100%; }
+    .decant-visual{ padding:24px; }
+}
+</style>
 </head>
+
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brandmark">
-        <div class="logo"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <span>Dicants Elite AR</span>
-      </div>
+<!-- Sprite oculto: silueta de frasco reutilizada como ícono de producto -->
+<svg style="position:absolute; width:0; height:0" aria-hidden="true">
+  <defs>
+    <symbol id="icon-bottle" viewBox="0 0 160 220">
+      <rect x="62" y="8" width="36" height="26" rx="4" fill="currentColor" opacity=".9"/>
+      <rect x="72" y="34" width="16" height="12" fill="currentColor" opacity=".5"/>
+      <path d="M72 46 L48 76 L48 196 Q48 206 58 206 L102 206 Q112 206 112 196 L112 76 L88 46 Z"
+            fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="2"/>
+      <rect x="56" y="122" width="48" height="34" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".65"/>
+      <line x1="64" y1="134" x2="96" y2="134" stroke="currentColor" stroke-width="1" opacity=".55"/>
+      <line x1="64" y1="142" x2="88" y2="142" stroke="currentColor" stroke-width="1" opacity=".55"/>
+      <path d="M55 82 L55 188" stroke="currentColor" stroke-width="1" opacity=".22"/>
+    </symbol>
+    <symbol id="icon-flask" viewBox="0 0 160 220">
+      <path d="M70 20h20v40l30 60v70a10 10 0 0 1-10 10H50a10 10 0 0 1-10-10v-70l30-60Z"
+            fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="2"/>
+      <rect x="66" y="10" width="28" height="14" rx="3" fill="currentColor" opacity=".85"/>
+      <line x1="46" y1="130" x2="114" y2="130" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+    </symbol>
+  </defs>
+</svg>
 
-      <div class="nav-actions">
-        <a class="nav-btn" href="#catalogo"><i class="fa-solid fa-bottle-droplet"></i> Catálogo</a>
-        <a class="nav-btn" href="https://ig.me/m/dicants.elite.ar" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram</a>
-        <button class="nav-btn" onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i> Carrito</button>
-      </div>
+<nav class="navbar" id="navbar">
+    <div class="nav-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#icon-bottle" x="4" y="1" width="16" height="22"/></svg>
+        Dicants Elite
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <div class="eyebrow"><i class="fa-solid fa-crown"></i> Perfumería premium en formato decant</div>
-        <h1>Dicants Elite AR</h1>
-        <p>Fragancias seleccionadas, presentación elegante y pedido simple. Armá tu carrito, elegí 5ml o 10ml y pedí directo por Instagram.</p>
-
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#catalogo"><i class="fa-solid fa-arrow-down"></i> Ver catálogo</a>
-          <a class="btn btn-secondary" href="https://ig.me/m/dicants.elite.ar" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Escribinos</a>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <strong>+6</strong>
-            <span>Fragancias destacadas</span>
-          </div>
-          <div class="stat">
-            <strong>2</strong>
-            <span>Tamaños disponibles</span>
-          </div>
-          <div class="stat">
-            <strong>24/7</strong>
-            <span>Pedido por IG</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="catalogo">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="titulo">Nuestras Fragancias</h2>
-          <p class="subtitulo-seccion">Elegí tu perfume, sumalo al carrito y enviá el pedido. Para un resultado más profesional, subí las fotos a tu propia carpeta local y reemplazá los `src` externos.</p>
-        </div>
-
-        <div class="features">
-          <div class="feature">
-            <i class="fa-solid fa-spray-can-sparkles"></i>
-            <div>
-              <h4>Decants seleccionados</h4>
-              <p>Opciones pensadas para probar, regalar o llevar en viaje sin comprar el frasco completo.</p>
-            </div>
-          </div>
-          <div class="feature">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-              <h4>Pedido rápido</h4>
-              <p>Con un clic abrís Instagram y copiás el pedido armado automáticamente.</p>
-            </div>
-          </div>
-          <div class="feature">
-            <i class="fa-solid fa-shield-heart"></i>
-            <div>
-              <h4>Imagen premium</h4>
-              <p>Diseño oscuro, dorado y limpio para que tu marca se vea más seria y exclusiva.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="cards">
-
-          <div class="card">
-            <div class="badge">Best seller</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/le-male-elixir.jpg" alt="Le Male Elixir" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">J.P. Gaultier</div>
-              <h3>Le Male Elixir</h3>
-              <p>Una presencia cálida y adictiva con estilo nocturno. Ideal para destacar en salidas y ocasiones especiales.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$12.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Le Male Elixir', '5ml', 12000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$20.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Le Male Elixir', '10ml', 20000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge">Nuevo</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/y-le-parfum.jpg" alt="Y Le Parfum" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">Yves Saint Laurent</div>
-              <h3>Y Le Parfum</h3>
-              <p>Elegante, moderno y versátil. Una fragancia limpia con carácter para uso diario o nocturno.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$12.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '5ml', 12000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$20.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Y Le Parfum', '10ml', 20000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge">Top</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/le-male-le-parfum.jpg" alt="Le Male Le Parfum" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">J.P. Gaultier</div>
-              <h3>Le Male Le Parfum</h3>
-              <p>Intenso, seductor y muy masculino. Una opción segura para quienes buscan presencia y proyección.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$12.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '5ml', 12000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$20.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Le Male Le Parfum', '10ml', 20000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge">Nicho</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/erba-pura.jpg" alt="Erba Pura" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">Xerjoff</div>
-              <h3>Erba Pura</h3>
-              <p>Frutal, brillante y muy llamativa. Una fragancia de impacto para quienes quieren destacar fuerte.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$12.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '5ml', 12000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$20.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Erba Pura', '10ml', 20000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge">Dark</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/asad.jpg" alt="Asad Lattafa" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">Lattafa</div>
-              <h3>Asad</h3>
-              <p>Oscura, especiada y con personalidad. Una fragancia con cuerpo, ideal para noche y clima fresco.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$12.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Lattafa Asad', '5ml', 12000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$20.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Lattafa Asad', '10ml', 20000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="badge">Premium</div>
-            <div class="img-container">
-              <img class="perfume-img" src="img/perfumes/born-in-roma-intense.jpg" alt="Born in Roma Intense" loading="lazy" onerror="this.onerror=null;this.src='img/perfumes/fallback.jpg';">
-            </div>
-            <div class="card-body">
-              <div class="brand">Extracto de perfumería</div>
-              <h3>Born in Roma Intense</h3>
-              <p>Inspiración premium con perfil elegante y fuerte. Diseñada para quienes buscan una alternativa más accesible.</p>
-              <div class="opciones-compra">
-                <div class="opcion">
-                  <span>Decant 5ml</span>
-                  <strong>$5.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Inspiración Valentino BIR Intense', '5ml', 5000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-                <div class="opcion">
-                  <span>Decant 10ml</span>
-                  <strong>$9.000</strong>
-                  <button class="btn-add" onclick="agregarAlCarrito('Inspiración Valentino BIR Intense', '10ml', 9000)"><i class="fa-solid fa-plus"></i> Agregar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <p class="note">
-          Importante: para que no fallen las fotos, bajalas y guardalas en <strong>img/perfumes/</strong>. Si no querés manejar imágenes locales, otra opción es usar una CDN propia o un hosting estable.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer-cta">
-    <div class="container">
-      <h2>Conectá con nosotros</h2>
-      <p>Pedí por Instagram, consultá stock y armá tu pedido en segundos. La experiencia está pensada para verse más seria, más limpia y más premium.</p>
-      <div class="social-row">
-        <a class="social-link" href="https://ig.me/m/dicants.elite.ar" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> @dicants.elite.ar</a>
-        <a class="social-link" href="#catalogo"><i class="fa-solid fa-bottle-droplet"></i> Ver catálogo</a>
-      </div>
+    <div class="nav-links" id="nav-links">
+        <a href="#catalogo" onclick="closeMenu()">Catálogo</a>
+        <a href="#decant-info" onclick="closeMenu()">Qué es un Decant</a>
+        <a href="#como-comprar" onclick="closeMenu()">Cómo Comprar</a>
+        <a href="#contacto" onclick="closeMenu()">Contacto</a>
     </div>
-  </footer>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+</nav>
 
-  <button class="cart-float" onclick="toggleCart()" aria-label="Abrir carrito">
-    <i class="fa-solid fa-cart-shopping"></i>
+<header>
+    <p class="eyebrow">Perfumería de Nicho &amp; Diseñador</p>
+    <h1>Dicants Elite AR</h1>
+    <p>La máxima exclusividad en perfumería. Tus fragancias favoritas, fraccionadas del original, en el tamaño justo para probar antes de invertir en el frasco completo.</p>
+    <a class="btn" href="#catalogo">Ver Catálogo</a>
+    <div class="scroll-cue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+</header>
+
+<section class="trust-strip reveal">
+    <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 20 6v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6Z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <h4>100% Originales</h4>
+        <p>Fraccionados directamente del frasco de fábrica.</p>
+    </div>
+    <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+        <h4>Envíos a Todo el País</h4>
+        <p>Coordinamos el envío a tu domicilio o punto de retiro.</p>
+    </div>
+    <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4Z"/></svg>
+        <h4>Asesoramiento Real</h4>
+        <p>Te ayudamos a elegir la fragancia por Instagram.</p>
+    </div>
+    <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8c-1.5-3-5-4-6-2s1 3 3 3 3-1 3-1Z"/><path d="M12 8c1.5-3 5-4 6-2s-1 3-3 3-3-1-3-1Z"/></svg>
+        <h4>Packaging Premium</h4>
+        <p>Presentación cuidada, lista para regalar.</p>
+    </div>
+</section>
+
+<section id="catalogo">
+    <h2 class="titulo reveal">Nuestras Fragancias</h2>
+    <p class="subtitulo-seccion reveal">Elegí el tamaño que prefieras y armá tu pedido</p>
+    <div class="divider reveal"><span class="line"></span><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,12 12,22 9,12"/></svg><span class="line right"></span></div>
+
+    <div class="filtros reveal">
+        <button class="filtro-btn active" data-filter="todos" onclick="filtrarCatalogo('todos')">Todos</button>
+        <button class="filtro-btn" data-filter="jpg" onclick="filtrarCatalogo('jpg')">Jean Paul Gaultier</button>
+        <button class="filtro-btn" data-filter="ysl" onclick="filtrarCatalogo('ysl')">YSL</button>
+        <button class="filtro-btn" data-filter="xerjoff" onclick="filtrarCatalogo('xerjoff')">Xerjoff</button>
+        <button class="filtro-btn" data-filter="lattafa" onclick="filtrarCatalogo('lattafa')">Lattafa</button>
+        <button class="filtro-btn" data-filter="inspiraciones" onclick="filtrarCatalogo('inspiraciones')">Inspiraciones</button>
+    </div>
+
+    <div class="cards">
+
+        <!-- Le Male Elixir -->
+        <div class="card reveal" data-brand="jpg">
+            <div class="img-container" style="color:#b8763e">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-bottle"/></svg>
+            </div>
+            <div class="brand">J.P. Gaultier</div>
+            <h3>Le Male Elixir</h3>
+            <p>Una ola de calor adictiva. Notas profundas de miel, tabaco rubio y lavanda nocturna.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Le Male Elixir','5ml',12000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Le Male Elixir','10ml',20000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Y Le Parfum -->
+        <div class="card reveal" data-brand="ysl">
+            <div class="img-container" style="color:#cfc39a">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-flask"/></svg>
+            </div>
+            <div class="brand">Yves Saint Laurent</div>
+            <h3>Y Le Parfum</h3>
+            <p>Elegancia oscura y limpia. Un contraste absoluto entre lavanda vibrante y madera de cedro negro.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Y Le Parfum','5ml',12000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Y Le Parfum','10ml',20000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Le Male Le Parfum -->
+        <div class="card reveal" data-brand="jpg">
+            <div class="img-container" style="color:#a67c37">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-bottle"/></svg>
+            </div>
+            <div class="brand">J.P. Gaultier</div>
+            <h3>Le Male Le Parfum</h3>
+            <p>El capitán de la noche. Un aura seductora de cardamomo, iris elegante y vainilla oriental.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Le Male Le Parfum','5ml',12000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Le Male Le Parfum','10ml',20000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Erba Pura -->
+        <div class="card reveal" data-brand="xerjoff">
+            <div class="img-container" style="color:#d4af37">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-flask"/></svg>
+            </div>
+            <div class="brand">Xerjoff</div>
+            <h3>Erba Pura</h3>
+            <p>Una explosión frutal bestial. Cítricos sicilianos, almizcle blanco y pura opulencia nicho.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Erba Pura','5ml',12000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Erba Pura','10ml',20000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asad Lattafa -->
+        <div class="card reveal" data-brand="lattafa">
+            <div class="img-container" style="color:#8c5a2b">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-bottle"/></svg>
+            </div>
+            <div class="brand">Lattafa</div>
+            <h3>Asad</h3>
+            <p>Carácter y misterio. Un perfil especiado, denso y avainillado con toques de maderas oscuras.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$12.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Lattafa Asad','5ml',12000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$20.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Lattafa Asad','10ml',20000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valentino Born In Roma (Inspiración) -->
+        <div class="card reveal" data-brand="inspiraciones" style="border-color:#555">
+            <div class="img-container" style="color:#c98a6b">
+                <svg class="perfume-icon" viewBox="0 0 160 220"><use href="#icon-flask"/></svg>
+            </div>
+            <div class="brand" style="color:#aaa">Extracto de Perfumería</div>
+            <h3 style="color:#fff">Born in Roma Intense</h3>
+            <p style="font-size:13px; color:#ccc"><strong>Inspiración Premium.</strong> Fórmula elaborada con aceites esenciales de máxima concentración y alcohol de perfumería fina. Proyección épica y similitud olfativa extraordinaria al original.</p>
+            <div class="opciones-compra">
+                <div class="opcion">
+                    <span>Decant 5ml</span>
+                    <strong>$5.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Inspiración Valentino BIR Intense','5ml',5000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+                <div class="opcion">
+                    <span>Decant 10ml</span>
+                    <strong>$9.000</strong>
+                    <button class="btn-add" data-label="Agregar" onclick="agregarAlCarrito('Inspiración Valentino BIR Intense','10ml',9000,this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Agregar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="decant-info" class="decant-info">
+    <div class="decant-grid">
+        <div class="decant-text reveal">
+            <h3>¿Qué es un Decant?</h3>
+            <p>Un decant es una porción del perfume original, fraccionada directamente desde el frasco de fábrica a un envase más pequeño. Mismo perfume, misma fórmula, mismo frasco de origen.</p>
+            <p>Es la forma ideal de conocer una fragancia de nicho o diseñador antes de invertir en el frasco completo — o simplemente de tener tu favorita en un tamaño más práctico para viajar.</p>
+        </div>
+        <div class="decant-visual reveal">
+            <svg viewBox="0 0 160 220" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-bottle"/></svg>
+        </div>
+    </div>
+</section>
+
+<section id="como-comprar">
+    <h2 class="titulo reveal">Cómo Comprar</h2>
+    <p class="subtitulo-seccion reveal">Tres pasos y listo</p>
+    <div class="divider reveal"><span class="line"></span><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15,12 12,22 9,12"/></svg><span class="line right"></span></div>
+    <div class="steps">
+        <div class="step-item reveal">
+            <div class="step-num">1</div>
+            <h4>Elegí tus decants</h4>
+            <p>Recorré el catálogo y agregá los tamaños que quieras probar.</p>
+        </div>
+        <div class="step-item reveal">
+            <div class="step-num">2</div>
+            <h4>Revisá tu pedido</h4>
+            <p>Ajustá cantidades en el carrito y confirmá el total.</p>
+        </div>
+        <div class="step-item reveal">
+            <div class="step-num">3</div>
+            <h4>Enviamos por Instagram</h4>
+            <p>Con un clic copiamos tu pedido y lo mandamos por DM.</p>
+        </div>
+    </div>
+</section>
+
+<footer id="contacto">
+    <h2>Conectá con Nosotros</h2>
+    <p class="foot-sub">Pedidos y consultas directas por Instagram</p>
+    <a class="ig-link" href="https://instagram.com/dicants.elite.ar" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @dicants.elite.ar
+    </a>
+    <p class="foot-note">© 2026 Dicants Elite AR — Todos los decants son fraccionados de frascos originales.</p>
+</footer>
+
+<!-- ELEMENTOS DEL CARRITO -->
+<button class="cart-float" onclick="toggleCart()" aria-label="Abrir carrito de compras">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
     <div class="cart-count" id="cart-count">0</div>
-  </button>
+</button>
 
-  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-  <aside class="cart-modal" id="cart-modal">
+<div class="cart-modal" id="cart-modal" role="dialog" aria-label="Carrito de compras">
     <div class="cart-header">
-      <h2>Tu pedido</h2>
-      <button class="close-cart" onclick="toggleCart()" aria-label="Cerrar carrito">×</button>
+        <h2>Tu Pedido</h2>
+        <button class="close-cart" onclick="toggleCart()" aria-label="Cerrar carrito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
     </div>
-
-    <div class="cart-items" id="cart-items">
-      <p class="empty">Tu carrito está vacío.</p>
-    </div>
-
+    <div class="cart-items" id="cart-items"></div>
     <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total</span>
-        <span id="cart-total-price">$0</span>
-      </div>
-      <button class="btn-checkout" onclick="enviarPedido()">
-        <i class="fa-brands fa-instagram"></i> Hacer pedido
-      </button>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">$0</span>
+        </div>
+        <button class="btn-checkout" onclick="enviarPedido()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+            Hacer Pedido en IG
+        </button>
     </div>
-  </aside>
+</div>
 
-  <script>
-    let carrito = [];
+<!-- LÓGICA -->
+<script>
+    let carrito = []; // {id, nombre, tamaño, precio, cantidad}
+
+    const iconTrash = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>';
+
+    function agregarAlCarrito(nombre, tamaño, precio, btn) {
+        const id = nombre + '|' + tamaño;
+        const existente = carrito.find(i => i.id === id);
+        if (existente) {
+            existente.cantidad++;
+        } else {
+            carrito.push({ id, nombre, tamaño, precio, cantidad: 1 });
+        }
+        actualizarCarrito();
+
+        if (btn) {
+            const original = btn.innerHTML;
+            const iconCheck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+            btn.classList.add('added');
+            btn.innerHTML = iconCheck + 'Agregado';
+            setTimeout(() => { btn.classList.remove('added'); btn.innerHTML = original; }, 900);
+        }
+
+        const btnCart = document.querySelector('.cart-float');
+        btnCart.style.transform = 'scale(1.15)';
+        setTimeout(() => btnCart.style.transform = 'scale(1)', 200);
+    }
+
+    function cambiarCantidad(id, delta) {
+        const item = carrito.find(i => i.id === id);
+        if (!item) return;
+        item.cantidad += delta;
+        if (item.cantidad <= 0) {
+            carrito = carrito.filter(i => i.id !== id);
+        }
+        actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(id) {
+        carrito = carrito.filter(i => i.id !== id);
+        actualizarCarrito();
+    }
 
     function toggleCart() {
-      document.getElementById('cart-modal').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('show');
-    }
-
-    function agregarAlCarrito(nombre, tamaño, precio) {
-      carrito.push({ nombre, tamaño, precio });
-      actualizarCarrito();
-      const btnCart = document.querySelector('.cart-float');
-      btnCart.style.transform = 'scale(1.12)';
-      setTimeout(() => btnCart.style.transform = 'scale(1)', 180);
-    }
-
-    function eliminarDelCarrito(index) {
-      carrito.splice(index, 1);
-      actualizarCarrito();
+        document.getElementById('cart-modal').classList.toggle('open');
     }
 
     function actualizarCarrito() {
-      const contenedor = document.getElementById('cart-items');
-      const contador = document.getElementById('cart-count');
-      const totalElement = document.getElementById('cart-total-price');
+        const contenedor = document.getElementById('cart-items');
+        const contador = document.getElementById('cart-count');
+        const totalElement = document.getElementById('cart-total-price');
 
-      contenedor.innerHTML = '';
-      let total = 0;
+        contenedor.innerHTML = '';
+        let total = 0;
+        let cantidadTotal = 0;
 
-      if (carrito.length === 0) {
-        contenedor.innerHTML = '<p class="empty">Tu carrito está vacío.</p>';
-      } else {
-        carrito.forEach((item, index) => {
-          total += item.precio;
-          contenedor.innerHTML += `
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <h4>${item.nombre}</h4>
-                <p>Decant ${item.tamaño} · $${item.precio.toLocaleString('es-AR')}</p>
-              </div>
-              <button class="cart-item-remove" onclick="eliminarDelCarrito(${index})" aria-label="Eliminar item">X</button>
-            </div>
-          `;
-        });
-      }
+        if (carrito.length === 0) {
+            contenedor.innerHTML = `
+                <div class="cart-empty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <p>Tu carrito está vacío.</p>
+                </div>`;
+        } else {
+            carrito.forEach(item => {
+                const subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                cantidadTotal += item.cantidad;
+                const idEsc = item.id.replace(/'/g, "\\'");
+                contenedor.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.nombre}</h4>
+                            <p>Decant ${item.tamaño} · $${item.precio.toLocaleString('es-AR')} c/u</p>
+                            <div class="qty-stepper">
+                                <button onclick="cambiarCantidad('${idEsc}',-1)" aria-label="Restar uno">−</button>
+                                <span>${item.cantidad}</span>
+                                <button onclick="cambiarCantidad('${idEsc}',1)" aria-label="Sumar uno">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-right">
+                            <span class="cart-item-subtotal">$${subtotal.toLocaleString('es-AR')}</span>
+                            <button class="cart-item-remove" onclick="eliminarDelCarrito('${idEsc}')" aria-label="Eliminar producto">${iconTrash}</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
-      contador.innerText = carrito.length;
-      totalElement.innerText = '$' + total.toLocaleString('es-AR');
+        contador.innerText = cantidadTotal;
+        totalElement.innerText = '$' + total.toLocaleString('es-AR');
     }
 
     function enviarPedido() {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío. Agregá algún decant primero.");
-        return;
-      }
+        if (carrito.length === 0) {
+            alert("Tu carrito está vacío. Agregá algún decant primero.");
+            return;
+        }
 
-      let textoPedido = "Hola! Quiero hacer el siguiente pedido de decants:\n\n";
-      let total = 0;
+        let textoPedido = "Hola! Quiero hacer el siguiente pedido de decants:\n\n";
+        let total = 0;
 
-      carrito.forEach(item => {
-        textoPedido += `- ${item.nombre} (${item.tamaño})\n`;
-        total += item.precio;
-      });
+        carrito.forEach(item => {
+            const subtotal = item.precio * item.cantidad;
+            total += subtotal;
+            textoPedido += `- ${item.nombre} (${item.tamaño}) x${item.cantidad} — $${subtotal.toLocaleString('es-AR')}\n`;
+        });
 
-      textoPedido += `\nTotal estimado: $${total.toLocaleString('es-AR')}\n\nMi usuario es: `;
+        textoPedido += `\nTotal estimado: $${total.toLocaleString('es-AR')}\n\nMi usuario es: `;
 
-      navigator.clipboard.writeText(textoPedido).then(() => {
-        alert("¡Tu pedido fue copiado! Se abrirá Instagram para enviarlo.");
-        window.open("https://ig.me/m/dicants.elite.ar", "_blank", "noopener,noreferrer");
-      }).catch(() => {
-        alert("No se pudo copiar automáticamente. Te abrimos Instagram igual.");
-        window.open("https://instagram.com/dicants.elite.ar", "_blank", "noopener,noreferrer");
-      });
+        navigator.clipboard.writeText(textoPedido).then(() => {
+            alert("¡Tu pedido fue copiado!\n\nSe va a abrir Instagram. Solo tenés que poner 'Pegar' en el chat y enviarnos el mensaje.");
+            window.open("https://ig.me/m/dicants.elite.ar", "_blank");
+        }).catch(() => {
+            alert("Hubo un error al copiar. Por favor, escribinos directo a @dicants.elite.ar");
+            window.open("https://instagram.com/dicants.elite.ar", "_blank");
+        });
+    }
+
+    function filtrarCatalogo(brand) {
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.display = (brand === 'todos' || card.dataset.brand === brand) ? '' : 'none';
+        });
+        document.querySelectorAll('.filtro-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === brand));
+    }
+
+    function toggleMenu() {
+        document.getElementById('nav-links').classList.toggle('open');
+    }
+    function closeMenu() {
+        document.getElementById('nav-links').classList.remove('open');
+    }
+
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
 
     actualizarCarrito();
-  </script>
+</script>
+
 </body>
 </html>
